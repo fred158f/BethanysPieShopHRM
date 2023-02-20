@@ -1,4 +1,5 @@
-﻿@inherits LayoutComponentBase
+﻿@using BethanysPieShopHRM.UI.LoginSingleton;
+@inherits LayoutComponentBase
 
 <div class="d-flex" id="wrapper">
 
@@ -11,11 +12,17 @@
                 <h3 class="title">Bethany's Pie Shop HRM </h3>
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                 </ul>
+                @if (UserSigninManager.Instance.CurrentUser != null)
+                {
+                <h3 class="title">Hello, @UserSigninManager.Instance.CurrentUser.FirstName!</h3>                    
+                }
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                </ul>
             </div>
+            
         </nav>
 
         <div class="container-fluid">
-
             @Body
         </div>
     </div>

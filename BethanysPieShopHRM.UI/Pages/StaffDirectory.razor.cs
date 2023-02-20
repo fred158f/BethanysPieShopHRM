@@ -22,5 +22,10 @@ namespace BethanysPieShopHRM.UI.Pages
         {
             Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
         }
+
+        public void UpdateButtons(int employeeId)
+        {
+            StateHasChanged();
+        }
     }
 }
