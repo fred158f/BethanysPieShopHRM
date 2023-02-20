@@ -25,7 +25,7 @@ namespace BethanysPieShopHRM.UI.Pages
 
         public void UpdateButtons(int employeeId)
         {
-            StateHasChanged();
+
         }
     }
 }
