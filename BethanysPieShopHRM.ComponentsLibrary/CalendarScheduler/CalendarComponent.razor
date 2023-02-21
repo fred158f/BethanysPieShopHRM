@@ -89,47 +89,54 @@
     private void GeneratorCalendarBody()
     {
         weeks.Clear();
-        int flag = 0;
+        int dayCounter = 0;
         WeekClass week = new WeekClass();
         List<DayEvent> dates = new List<DayEvent>();
         var totalDays = (int)(endDate - startDate).TotalDays;
-        int countDays = -1;
-        for (DateTime dt = startDate; dt <= endDate;)
+        int totalDaysAdded = -1;
+
+        // Iterate through all days from startdate to enddate
+        for (DateTime currentDay = startDate; currentDay <= endDate;)
         {
-            int dayC = (int)dt.DayOfWeek;
-            if (dayC == flag)
+            // Get index of the currentDay
+            int weekDayIndex = (int)currentDay.DayOfWeek;
+
+            if (weekDayIndex == dayCounter)
             {   
                 dates.Add(new DayEvent()
                 {
-                    DateValue = dt.ToString("dd-MMM-yyyy"),
-                    DayName = dt.ToString("dddd")
+                    DateValue = currentDay.ToString("dd-MMM-yyyy"),
+                    DayName = currentDay.ToString("dddd")
 
                 });
-                dt = dt.AddDays(1);
-                countDays++;
+                currentDay = currentDay.AddDays(1);
+                totalDaysAdded++;
             } 
             else
             {
                 dates.Add(null);
             }
 
-            if (flag == 6)
+            // If we've reached saturday (index 6) add the week and reset dayCounter
+            if (dayCounter == 6)
             {
                 week = new WeekClass();
                 week.Dates = dates;
                 weeks.Add(week);
 
                 dates = new List<DayEvent>();
-                flag = 0;
+                dayCounter = 0;
             }
             else
             {
-                flag++;
-                
+                dayCounter++;    
             }
-            if (countDays == totalDays)
+            
+            // If there are no more days to add, then add the week and break
+            if (totalDaysAdded == totalDays)
             {
-                for (int i = flag; i < 7; i++)
+                // foreach empty day add a null value
+                for (int i = dayCounter; i < 7; i++)
                 {
                     dates.Add(null);
                 }
