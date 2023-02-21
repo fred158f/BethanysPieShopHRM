@@ -11,6 +11,9 @@ namespace BethanysPieShopHRM.UI.Pages
 {
     public class StaffDirectoryBase: ComponentBase
     {
+        [CascadingParameter(Name = "User")]
+        public Employee CurrentUser { get; set; }
+
         [Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 
@@ -21,6 +24,11 @@ namespace BethanysPieShopHRM.UI.Pages
         protected override async Task OnInitializedAsync()
         {
             Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
+        }
+
+        public void UpdateButtons(int employeeId)
+        {
+
         }
     }
 }
