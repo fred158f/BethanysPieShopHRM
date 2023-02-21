@@ -1,8 +1,7 @@
 ﻿@using BethanysPieShopHRM.Shared;
 @using BethanysPieShopHRM.UI.LoginSingleton;
 
-@if (UserSigninManager.Instance.CurrentUser != null &&
-   UserSigninManager.Instance.CurrentUser.EmployeeId == UserId)
+@if (CurrentUser != null && CurrentUser.EmployeeId == UserId)
 {
     <button class="btn btn-outline-secondary" @onclick="@LogoutUser">Logout</button>
 }
@@ -26,7 +25,7 @@ else
     {
         await UserSigninManager.Instance.Login(UserId);
         await OnLogin.InvokeAsync(UserId);
-        
+
     }
 
     public void LogoutUser()
