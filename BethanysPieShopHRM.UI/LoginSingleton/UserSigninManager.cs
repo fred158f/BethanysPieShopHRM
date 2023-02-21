@@ -12,6 +12,10 @@ namespace BethanysPieShopHRM.UI.LoginSingleton
         private static readonly object Instancelock = new object();
         private readonly HttpClient _httpClient;
 
+        public Employee CurrentUser { get; set; }
+
+        public event Action? UserChange;
+
         private UserSigninManager()
         {        
             _httpClient = new HttpClient();
@@ -39,22 +43,22 @@ namespace BethanysPieShopHRM.UI.LoginSingleton
             }
         }
 
-        public Employee CurrentUser { get; set; }
-
-        public bool IsLoggedIn()
-        {
-            return CurrentUser != null;
-        }
-
         public async Task<Employee> Login(int employeeId)
         {
             CurrentUser = await JsonSerializer.DeserializeAsync<Employee>(await _httpClient.GetStreamAsync($"api/employee/{employeeId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+            OnUserChange();
             return CurrentUser;
         }
 
         public void Logout()
         {
             CurrentUser = null;
+            OnUserChange();
+        }
+
+        public void OnUserChange()
+        {
+            UserChange?.Invoke();
         }
     }
 }

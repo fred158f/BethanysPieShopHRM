@@ -1,30 +1,43 @@
-﻿@using BethanysPieShopHRM.UI.LoginSingleton;
+﻿@using BethanysPieShopHRM.Shared;
+@using BethanysPieShopHRM.UI.LoginSingleton;
 @inherits LayoutComponentBase
 
-<div class="d-flex" id="wrapper">
 
-    <LeftNav />
+    <div class="d-flex" id="wrapper">
 
-    <div id="page-content-wrapper">
+        <LeftNav />
 
-        <nav class="navbar navbar-expand-lg navbar-light border-bottom">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <h3 class="title">Bethany's Pie Shop HRM </h3>
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                </ul>
-                @if (UserSigninManager.Instance.CurrentUser != null)
-                {
-                <h3 class="title">Hello, @UserSigninManager.Instance.CurrentUser.FirstName!</h3>                    
-                }
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                </ul>
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <h3 class="title">Bethany's Pie Shop HRM </h3>
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    </ul>
+                    @if (CurrentUser != null)
+                    {
+                        <h3 class="title">Hello, @CurrentUser.FirstName!</h3>
+                    }
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    </ul>
+                </div>
+
+            </nav>
+            <CascadingValue Value="@CurrentUser" Name="User">
+            <div class="container-fluid">
+                @Body
             </div>
-            
-        </nav>
-
-        <div class="container-fluid">
-            @Body
+        </CascadingValue>
         </div>
+
     </div>
 
-</div>
+@code {
+    public Employee? CurrentUser { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        UserSigninManager.Instance.UserChange += () => { CurrentUser = UserSigninManager.Instance.CurrentUser; StateHasChanged(); };
+        return base.OnInitializedAsync();
+    }
+}

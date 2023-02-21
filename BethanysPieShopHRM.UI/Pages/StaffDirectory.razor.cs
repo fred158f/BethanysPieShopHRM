@@ -11,6 +11,9 @@ namespace BethanysPieShopHRM.UI.Pages
 {
     public class StaffDirectoryBase: ComponentBase
     {
+        [CascadingParameter(Name = "User")]
+        public Employee CurrentUser { get; set; }
+
         [Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 

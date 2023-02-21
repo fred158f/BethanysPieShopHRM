@@ -13,6 +13,9 @@ else
 
 
 @code {
+    [CascadingParameter(Name = "User")]
+    public Employee CurrentUser { get; set; }
+
     [Parameter]
     public int UserId { get; set; }
 
@@ -23,6 +26,7 @@ else
     {
         await UserSigninManager.Instance.Login(UserId);
         await OnLogin.InvokeAsync(UserId);
+        
     }
 
     public void LogoutUser()
