@@ -9,7 +9,6 @@ namespace BethanysPieShopHRM.UI.LoginSingleton
 
     public sealed class UserSigninManager
     {
-        private static int counter = 0;
         private static readonly object Instancelock = new object();
         private readonly HttpClient _httpClient;
 

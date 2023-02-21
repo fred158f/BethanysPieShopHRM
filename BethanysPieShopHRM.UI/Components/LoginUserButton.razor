@@ -17,9 +17,6 @@ else
     public int UserId { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
-
-    [Parameter]
     public EventCallback<int> OnLogin { get; set; }
 
     public async Task LoginUser()
