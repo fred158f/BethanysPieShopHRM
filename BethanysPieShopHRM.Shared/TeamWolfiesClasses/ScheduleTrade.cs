@@ -9,7 +9,7 @@ namespace BethanysPieShopHRM.Shared.TeamWolfiesClasses
         public int Id { get; set; }
         public int SenderId { get; set; }
         public int RecieverId { get; set; }
-        public TradeStatus TradeStatus;
+        public int TradeStatus { get; set; }
     }
 
 
