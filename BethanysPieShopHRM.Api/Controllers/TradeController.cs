@@ -14,12 +14,14 @@ namespace BethanysPieShopHRM.Api.Controllers
         {
             repo = traderepo;
         }
+
         [HttpGet]
         public IActionResult GetPendingTrades(int id)
         {
             var result = repo.GetTradesCreatedByMe(id);
             return Ok(result);
         } 
+
         [HttpGet]
         public IActionResult GetTradeRequests(int id)
         {
