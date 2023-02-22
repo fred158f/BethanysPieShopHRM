@@ -1,11 +1,11 @@
 ﻿@using BethanysPieShopHRM.Shared.Models;
 
-@if (dayEvent != null)
+@if (DayEvent != null)
 {
     <td>
-        @dayEvent.DateValue
+        @DayEvent.DateValue
         <br /><br />
-        <label style="color:#c00;font-weight:bold">@dayEvent.Note</label>
+        <label style="color:#c00;font-weight:bold">@DayEvent.Note</label>
         <br /><br />
     </td>
 }
@@ -20,6 +20,7 @@ else
 }
 
 @code {
-    [CascadingParameter(Name = "CurrentDayEvent")]
-    private DayEvent dayEvent { get; set; }
+    [Parameter]
+    public DayEvent DayEvent { get; set; }
+
 }

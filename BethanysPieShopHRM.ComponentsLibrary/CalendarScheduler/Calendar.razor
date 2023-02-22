@@ -23,10 +23,7 @@
     <tbody>
         @foreach(var week in weeks)
         {
-            @UpdateWeek(week);
-            <CascadingValue Value="@CurrentWeek" Name="DayEvents">
-                <CalendarWeek/>
-            </CascadingValue>
+                <WeekCalendar DayEvents="@week"/>
         }
     </tbody>
 </table>
@@ -37,14 +34,6 @@
     List<WeekClass> weeks = new List<WeekClass>();
     DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
     DateTime endDate = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).AddMonths(1).AddDays(-1);
-    
-    private WeekClass CurrentWeek { get; set; }
-
-    private string UpdateWeek(WeekClass _newWeek)
-    {
-        CurrentWeek = _newWeek;
-        return "";
-    }
 
     protected override void OnInitialized()
     {
