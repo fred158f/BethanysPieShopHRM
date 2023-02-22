@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Microsoft.EntityFrameworkCore;
 
 namespace BethanysPieShopHRM.Api.Models
@@ -20,6 +21,8 @@ namespace BethanysPieShopHRM.Api.Models
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Answer> Answers { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
+        public DbSet<ScheduleTrade> ScheduleTrades { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
