@@ -1,21 +1,21 @@
 ﻿@using BethanysPieShopHRM.Shared;
 <div class="bg-light" id="sidebar-wrapper">
-    <div class="sidebar-logo">
-        <img class="img-responsive" id="logo" src="/images/bethanylogo.png" />
+    <div class="sidebar-logo center-image">
+        <img class="img-responsive" id="logo" src="/images/kyllingogco-logo-lys.svg" />
     </div>
     <div class="profile-picture">
-        <img class="img-responsive" src="/images/apple-pie.png" />
+        <img class="img-responsive" src="/images/Kylling_og_Co_2021-03-11_13664-1-1024x1024.jpg" />
     </div>
     <div class="menu list-group list-group-flush">
         <nav id="sidebar">
             <ul class="list-unstyled components">
                 <li>
                     <NavLink href="/">
-                        Home
+                        <span class="font-heading">Home</span>
                     </NavLink>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(1))" data-toggle="collapse" class="dropdown-toggle">Tasks</a>
+                    <a @onclick="(() => ToggleNav1(1))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Tasks</span></a>
                     <ul class="list-unstyled sub-menu @( this.IsHidden1 ? "toggle-hide": "toggle-show")" id="tasks">
                         <li>
                             <NavLink href="/tasks">
@@ -30,7 +30,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(2))" data-toggle="collapse" class="dropdown-toggle">Employees</a>
+                    <a @onclick="(() => ToggleNav1(2))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Employee</span></a>
                     <ul class="list-unstyled sub-menu @( this.IsHidden2 ? "toggle-hide": "toggle-show")" id="employees">
                         <li>
                             <NavLink href="/employeeoverview">
@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(3))" data-toggle="collapse" class="dropdown-toggle">Opportunities</a>
+                    <a @onclick="(() => ToggleNav1(3))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Opportunities</span></a>
                     <ul class="list-unstyled sub-menu @( this.IsHidden3 ? "toggle-hide": "toggle-show")" id="jobs">
                         <li>
                             <NavLink href="/jobs">
@@ -60,7 +60,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(4))" data-toggle="collapse" class="dropdown-toggle">Expenses</a>
+                    <a @onclick="(() => ToggleNav1(4))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Expenses</span></a>
                     <ul class="list-unstyled sub-menu @( this.IsHidden4 ? "toggle-hide": "toggle-show")" id="training">
                         <li>
                             <NavLink href="/expenses">
@@ -75,7 +75,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(5))" data-toggle="collapse" class="dropdown-toggle">Feedback</a>
+                    <a @onclick="(() => ToggleNav1(5))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Feedback</span></a>
                     <ul class="list-unstyled sub-menu @( this.IsHidden5 ? "toggle-hide": "toggle-show")" id="feedback">
                         <li>
                             <NavLink href="/surveys">
@@ -91,7 +91,7 @@
                 </li>
                 <li>
                     <NavLink href="/staffdirectory">
-                        Staff Directory
+                        <span class="font-heading">Staff Directory</span>
                     </NavLink>
                 </li>
             </ul>
@@ -99,7 +99,7 @@
     </div>
 </div>
 
-@code{
+@code {
 
     public bool IsHidden1 { get; set; } = true;
     public bool IsHidden2 { get; set; } = true;
