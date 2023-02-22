@@ -1,0 +1,28 @@
+﻿@using BethanysPieShopHRM.Shared.Models;
+
+@if (DayEvents != null)
+{
+<tr>
+    @foreach (DayEvent day in DayEvents.Dates)
+    {
+        @UpdateDay(day);
+        <CascadingValue Value="@CurrentDayEvent" Name="CurrentDayEvent">
+            <CalendarDay/>
+        </CascadingValue>
+    }
+</tr>
+}
+
+@code {
+    private DayEvent CurrentDayEvent { get; set; }
+
+    [CascadingParameter(Name = "DayEvents")]
+    private WeekClass DayEvents { get; set; }
+
+    private string UpdateDay(DayEvent _newDay)
+    {
+        CurrentDayEvent = _newDay;
+        return "";
+    }
+
+}

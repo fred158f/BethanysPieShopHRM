@@ -11,6 +11,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="CalendarScheduler\CalendarDay.razor" />
+    <Content Remove="CalendarScheduler\CalendarWeek.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="CalendarScheduler\CalendarDay.razor" />
+    <None Include="CalendarScheduler\CalendarWeek.razor" />
     <None Include="wwwroot\deliveryMap.js" />
     <None Include="wwwroot\leaflet\images\layers-2x.png" />
     <None Include="wwwroot\leaflet\images\layers.png" />
@@ -28,6 +35,14 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BethanysPieShopHRM.Shared\BethanysPieShopHRM.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="CalendarScheduler\CalendarWeek.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="CalendarScheduler\CalendarWeek.razor" />
   </ItemGroup>
 
 </Project>

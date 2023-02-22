@@ -1,0 +1,25 @@
+﻿@using BethanysPieShopHRM.Shared.Models;
+
+@if (dayEvent != null)
+{
+    <td>
+        @dayEvent.DateValue
+        <br /><br />
+        <label style="color:#c00;font-weight:bold">@dayEvent.Note</label>
+        <br /><br />
+    </td>
+}
+else
+{
+    <td style="background-color: gray">
+        <label>NotReal</label>
+        <br /><br />
+        <label>NotReal</label>
+        <br /><br />
+    </td>
+}
+
+@code {
+    [CascadingParameter(Name = "CurrentDayEvent")]
+    private DayEvent dayEvent { get; set; }
+}

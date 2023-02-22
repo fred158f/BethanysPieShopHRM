@@ -1,5 +1,6 @@
-﻿@using BethanysPieShopHRM.Shared.Models;
+﻿@using BethanysPieShopHRM.Shared.Models
 @using Microsoft.AspNetCore.Components.Web
+@using BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
 
 <select @onchange="LoadCalendar">
     @foreach (string monthName in monthNames)
@@ -22,30 +23,10 @@
     <tbody>
         @foreach(var week in weeks)
         {
-            <tr>
-                @for (var dayIndex = 0; dayIndex < week.Dates.Count(); dayIndex++)
-                {
-                    if (week.Dates[dayIndex] != null)
-                    {
-                        <td @onclick="Write">
-                            @week.Dates[dayIndex].DateValue
-                            <br/><br/>
-                            <label style="color:#c00;font-weight:bold">@week.Dates[dayIndex].Note</label>
-                            <br/><br/>
-                        </td>
-
-                    }
-                    else
-                    {
-                        <td style="background-color: gray">
-                            <label>NotReal</label>
-                            <br/><br/>
-                            <label>NotReal</label>
-                            <br/><br/>
-                        </td>
-                    }
-                }
-            </tr>
+            @UpdateWeek(week);
+            <CascadingValue Value="@CurrentWeek" Name="DayEvents">
+                <CalendarWeek/>
+            </CascadingValue>
         }
     </tbody>
 </table>
@@ -56,6 +37,14 @@
     List<WeekClass> weeks = new List<WeekClass>();
     DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
     DateTime endDate = (new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)).AddMonths(1).AddDays(-1);
+    
+    private WeekClass CurrentWeek { get; set; }
+
+    private string UpdateWeek(WeekClass _newWeek)
+    {
+        CurrentWeek = _newWeek;
+        return "";
+    }
 
     protected override void OnInitialized()
     {
@@ -89,11 +78,11 @@
     private void GeneratorCalendarBody()
     {
         weeks.Clear();
-        int dayCounter = 0;
+        int weekDayCounter = 0;
         WeekClass week = new WeekClass();
         List<DayEvent> dates = new List<DayEvent>();
-        var totalDays = (int)(endDate - startDate).TotalDays;
-        int totalDaysAdded = -1;
+        int totalDays = endDate.Day;
+        int totalDaysAdded = 0;
 
         // Iterate through all days from startdate to enddate
         for (DateTime currentDay = startDate; currentDay <= endDate;)
@@ -101,7 +90,7 @@
             // Get index of the currentDay
             int weekDayIndex = (int)currentDay.DayOfWeek;
 
-            if (weekDayIndex == dayCounter)
+            if (weekDayIndex == weekDayCounter)
             {   
                 dates.Add(new DayEvent()
                 {
@@ -118,25 +107,25 @@
             }
 
             // If we've reached saturday (index 6) add the week and reset dayCounter
-            if (dayCounter == 6)
+            if (weekDayCounter == 6)
             {
                 week = new WeekClass();
                 week.Dates = dates;
                 weeks.Add(week);
 
                 dates = new List<DayEvent>();
-                dayCounter = 0;
+                weekDayCounter = 0;
             }
             else
             {
-                dayCounter++;    
+                weekDayCounter++;    
             }
             
             // If there are no more days to add, then add the week and break
             if (totalDaysAdded == totalDays)
             {
                 // foreach empty day add a null value
-                for (int i = dayCounter; i < 7; i++)
+                for (int i = weekDayCounter; i < 7; i++)
                 {
                     dates.Add(null);
                 }
@@ -145,7 +134,6 @@
                 weeks.Add(week);
                 break;
             }
-            
         }
     }
 }
