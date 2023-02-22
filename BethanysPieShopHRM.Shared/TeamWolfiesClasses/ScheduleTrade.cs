@@ -9,6 +9,14 @@ namespace BethanysPieShopHRM.Shared.TeamWolfiesClasses
         public int Id { get; set; }
         public int SenderId { get; set; }
         public int RecieverId { get; set; }
-        public string TradeStatus { get; set; }
+        public TradeStatus TradeStatus;
+    }
+
+
+    public enum TradeStatus
+    {
+        Pending,
+        Accepted,
+        Refused
     }
 }
