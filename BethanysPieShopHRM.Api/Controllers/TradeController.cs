@@ -1,5 +1,7 @@
 ﻿using BethanysPieShopHRM.Data.Repositories;
+using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BethanysPieShopHRM.Api.Controllers
 {
@@ -13,10 +15,30 @@ namespace BethanysPieShopHRM.Api.Controllers
             repo = traderepo;
         }
         [HttpGet]
-        public IActionResult GetMyTrade(int id)
+        public IActionResult GetPendingTrades(int id)
         {
-            var result = repo.ge
-            return Ok(result)
+            var result = repo.GetTradesCreatedByMe(id);
+            return Ok(result);
+        } 
+        [HttpGet]
+        public IActionResult GetTradeRequests(int id)
+        {
+            var result = repo.GetTradesSentToMe(id);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public IActionResult CreateTradeRequest(ScheduleTrade trade)
+        {
+            repo.CreateTrade(trade);
+            return Ok();
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateTrade(ScheduleTrade tradesChanges)
+        {
+            var result = await repo.UpdateTrade(tradesChanges);
+            return Ok(result);
         }
     }
 }
