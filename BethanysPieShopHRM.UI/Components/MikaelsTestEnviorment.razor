@@ -1,23 +1,28 @@
 ﻿@page "/mikael"
 @using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+@using BethanysPieShopHRM.UI.LoginSingleton;
 @using BethanysPieShopHRM.UI.Services;
 @inject ScheduleService scheduleService
-@inject ContainsUserID userId
+
 
 <h1>Mikaels Test Enviorment</h1>
 
-<div class="card w-25">
+<div class="card w-50">
     <div class="card-body">
         <h5 class="card-title">Opret Schedule</h5>
-        <EditForm>
+        <EditForm Model="@createdSchedule">
 
-        <div>
-            <label>Vælg Start Tid</label>
-            <InputDate @bind-Value="createdSchedule.ShiftStart"/>
+        <div class="form-group">
+            <label for="start">Vælg Start Tid</label>
+            <InputDate id="start" class="form-control" @bind-Value="createdSchedule.ShiftStart"/>
         </div>
-        <div>
-            <label>Vælg Slut Tid</label>
-            <InputDate @bind-Value="createdSchedule.ShiftEnd"/>
+        <div class="form-group">
+            <label for="slut">Vælg Slut Tid</label>
+            <InputDate id="slut" class="form-control" @bind-Value="createdSchedule.ShiftEnd"/>
+        </div>
+                <div class="form-group">
+            <label for="timestamp">Vælg Start Tid</label>
+            <InputText id="timestamp" class="form-control" @bind-Value="timeStamp"/>
         </div>
 
             <a href="#" class="btn btn-primary" @onclick="CreateNewSchedule">OPRET</a>
@@ -29,14 +34,16 @@
 
 @code{
     private Schedule createdSchedule { get; set; } = new Schedule();
-
+    private string timeStamp = string.Empty;
 
 
     private void CreateNewSchedule()
     {
-        if (userId.Id != null)
+
+        int userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
+        if (userId != null)
         {
-            createdSchedule.EmployeeId = userId.Id;
+            createdSchedule.EmployeeId = userId;
             scheduleService.CreateSchedule(createdSchedule);
         }        
         
