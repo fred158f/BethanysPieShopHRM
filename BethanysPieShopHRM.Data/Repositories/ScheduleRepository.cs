@@ -52,7 +52,7 @@ namespace BethanysPieShopHRM.Data.Repositories
 
         public async void DeleteScheduleById(int id)
         {
-            var schedule = await _appDbContext.Schedules.Where(id);
+            var schedule = await this.GetWhere(id);
 
             _appDbContext.Schedules.Remove(schedule);
             await _appDbContext.SaveChangesAsync();
