@@ -43,14 +43,14 @@ nav {
     text-align: center;
 }
 
+#sidebar-wrapper {
+    background: rgb(41, 45, 48);
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: var(--light-grey);
 }
 
-
-//*
-    The Purple Zone
-*/
 
 .list-group-item.active, .list-group-item.active:active, .list-group-item.active:focus, .list-group-item.active:visited {
     color: white;
@@ -83,11 +83,11 @@ nav {
     }
 
 .edit-outline-btn {
-    border-color: #23cfa7;
+    border-color: var(--test);
 }
 
     .edit-outline-btn:hover, .edit-outline-btn:active {
         color: #fff;
-        background-color: #a593c2 !important;
-        border-color: #a593c2 !important;
+        background-color: var(--test);
+        border-color: var(--test);
     }
