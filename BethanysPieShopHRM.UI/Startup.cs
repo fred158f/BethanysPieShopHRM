@@ -8,6 +8,7 @@ using BethanysPieShopHRM.UI.Services;
 using BethanysPieShopHRM.UI.Data;
 using Blazor.FlexGrid;
 using BethanysPieShopHRM.UI.Pages;
+using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 
 namespace BethanysPieShopHRM.UI
 {
@@ -42,6 +43,8 @@ namespace BethanysPieShopHRM.UI
             services.AddTransient<ISurveyDataService, SurveyDataService>();
             services.AddTransient<ICurrencyDataService, CurrencyDataService>();
             services.AddTransient<IJobDataService, JobsDataService>();
+            services.AddTransient<ScheduleService>();
+            services.AddSingleton<ContainsUserID>();
 
             // Helper services
             services.AddTransient<IEmailService, EmailService>();

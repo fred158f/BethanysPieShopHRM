@@ -21,7 +21,7 @@ namespace BethanysPieShopHRM.Data.Repositories
         public async Task<Schedule> GetWhere(int id)
         {
             return await _appDbContext.Schedules.FirstOrDefaultAsync(x => x.Id == id);
-        } //you would never know this id
+        } 
 
         public async Task<List<Schedule>> GetSchedulesByDate(DateTime dato)
         {

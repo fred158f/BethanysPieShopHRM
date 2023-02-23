@@ -1,0 +1,51 @@
+﻿@page "/mikael"
+@using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+@using BethanysPieShopHRM.UI.LoginSingleton;
+@using BethanysPieShopHRM.UI.Services;
+@inject ScheduleService scheduleService
+
+
+<h1>Mikaels Test Enviorment</h1>
+
+<div class="card w-50">
+    <div class="card-body">
+        <h5 class="card-title">Opret Schedule</h5>
+        <EditForm Model="@createdSchedule">
+
+        <div class="form-group">
+            <label for="start">Vælg Start Tid</label>
+            <InputDate id="start" class="form-control" @bind-Value="createdSchedule.ShiftStart"/>
+        </div>
+        <div class="form-group">
+            <label for="slut">Vælg Slut Tid</label>
+            <InputDate id="slut" class="form-control" @bind-Value="createdSchedule.ShiftEnd"/>
+        </div>
+                <div class="form-group">
+            <label for="timestamp">Vælg Start Tid</label>
+            <InputText id="timestamp" class="form-control" @bind-Value="timeStamp"/>
+        </div>
+
+            <a href="#" class="btn btn-primary" @onclick="CreateNewSchedule">OPRET</a>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@code{
+    private Schedule createdSchedule { get; set; } = new Schedule();
+    private string timeStamp = string.Empty;
+
+
+    private void CreateNewSchedule()
+    {
+
+        int userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
+        if (userId != null)
+        {
+            createdSchedule.EmployeeId = userId;
+            scheduleService.CreateSchedule(createdSchedule);
+        }        
+        
+    }
+}

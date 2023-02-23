@@ -31,6 +31,22 @@ namespace BethanysPieShopHRM.Api.Controllers
             return Ok(results);
         }
 
+        [HttpPost]
+        public IActionResult CreateSchedule(DateTime start, DateTime end, int id)
+        {
+            var schedule = new Schedule() { EmployeeId = id,ShiftStart = start, ShiftEnd = end, };
+            repo.CreateSchedule(schedule);  
+            return Ok(schedule);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateSchedule(Schedule schedule)
+        {
+            repo.UpdateSchedule(schedule);
+            return Ok(schedule);
+        }
+
+
         [HttpDelete]
         public IActionResult DeleteSchedule(int id) 
         {
