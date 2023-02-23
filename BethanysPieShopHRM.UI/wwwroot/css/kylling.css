@@ -53,7 +53,7 @@ nav {
     background: rgb(41, 45, 48);
 }
 
-.widget {
+.widget {    
     border-radius: 10px;
 }
 
@@ -111,4 +111,27 @@ table.rounded-corners {
 
 .rounded-corner {
     border-radius: 10px;
+}
+
+/*
+    Dropdown menu anims
+*/
+
+.dropdown_menu-7 {
+    animation: rotateMenu 400ms ease-in-out forwards;
+    transform-origin: top center;
+}
+
+@keyframes rotateMenu {
+    0% {
+        transform: rotateX(-90deg);
+    }
+
+    70% {
+        transform: rotateX(20deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
 }
