@@ -4,16 +4,17 @@ using System.Text;
 
 namespace BethanysPieShopHRM.Shared.TeamWolfiesClasses
 {
-    public class ScheduleTrade
+    public class Swap
     {
         public int Id { get; set; }
         public int SenderId { get; set; }
         public int RecieverId { get; set; }
-        public int TradeStatus { get; set; }
+        public int SwapStatusInt { get; set; }
+        public SwapStatus SwapStatus { get; set; }
     }
 
 
-    public enum TradeStatus
+    public enum SwapStatus
     {
         Pending,
         Accepted,

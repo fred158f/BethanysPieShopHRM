@@ -14,11 +14,11 @@ namespace BethanysPieShopHRM.Api.Controllers
         private ScheduleRepository repo;
         public ScheduleController(ScheduleRepository repository)
         {
-            repo= repository;
+            repo = repository;
         }
 
-        [HttpGet]
-        public IActionResult GetSchedulesByDate(DateTime date)
+        [HttpGet("{date}")]
+        public IActionResult GetSchedulesByDate(string date)
         {            
             var results = repo.GetSchedulesByDate(date);
             return Ok(results);

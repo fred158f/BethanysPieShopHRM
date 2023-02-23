@@ -22,7 +22,7 @@ namespace BethanysPieShopHRM.Api.Models
         public DbSet<Survey> Surveys { get; set; }
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Schedule> Schedules { get; set; }
-        public DbSet<ScheduleTrade> ScheduleTrades { get; set; }
+        public DbSet<Swap> Swap { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -23,9 +23,9 @@ namespace BethanysPieShopHRM.Data.Repositories
             return await _appDbContext.Schedules.FirstOrDefaultAsync(x => x.Id == id);
         } 
 
-        public async Task<List<Schedule>> GetSchedulesByDate(DateTime dato)
+        public async Task<List<Schedule>> GetSchedulesByDate(string dato)
         {
-            return await _appDbContext.Schedules.Where(x => x.ShiftStart.ToShortDateString() == dato.ToShortDateString()).ToListAsync();
+            return await _appDbContext.Schedules.Where(x => x.ShiftStart.ToShortDateString() == dato).ToListAsync();
         }
         public async Task<List<Schedule>> GetScheduleByEmployeeId(int id)
         {

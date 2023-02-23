@@ -29,7 +29,7 @@ namespace BethanysPieShopHRM.Api
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "BethanysPieShopHRM"));
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DumDumSQL")));
 
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
@@ -38,7 +38,7 @@ namespace BethanysPieShopHRM.Api
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ISurveyRepository, SurveyRepository>();
-            services.AddScoped<TradeSchdulesRepository>();
+            services.AddScoped<SwapRepository>();
             services.AddScoped<ScheduleRepository>();
 
             services.AddCors(options =>
