@@ -1,0 +1,46 @@
+﻿@using BethanysPieShopHRM.Shared.Models;
+@using Microsoft.AspNetCore.Components.Web
+
+@if (DayEvent != null)
+{
+    <td @onclick="HasClickt" style="background-color:@colour">
+        <button @onclick="HasClickt" style="background-color:@colour">
+            @DayEvent.DateValue
+        </button>
+        <br /><br />
+        <label>NotReal</label>
+        <br /><br />
+    </td>
+}
+else
+{
+    <td style="background-color: gray">
+        <label>NotReal</label>
+        <br /><br />
+        <label>NotReal</label>
+        <br /><br />
+    </td>
+}
+
+@code {
+    [Parameter]
+    public DayEvent DayEvent { get; set; }
+    public string colour { get; set; }
+
+    protected override void OnInitialized()
+    {
+        colour = "purple";
+        base.OnInitialized();
+    }
+
+    protected override void OnParametersSet()
+    {
+        colour = "purple"; 
+        base.OnParametersSet();
+    }
+
+    public void HasClickt()
+    {
+        colour = (colour == "purple" ? "orange" : "purple");
+    }
+}

@@ -1,0 +1,31 @@
+﻿@using BethanysPieShopHRM.Shared.Models
+@using Microsoft.AspNetCore.Components.Web
+@using BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
+
+<select @onchange="LoadCalendar">
+    <option selected hidden disabled> - Cheese - </option>
+    @foreach (string monthName in monthNames)
+    {
+        <option>@monthName</option>
+    }
+</select>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @foreach (string dayName in days)
+            {
+                <th>
+                    @dayName
+                </th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var week in weeks)
+        {
+            <WeekCalendar DayEvents="@week" />
+        }
+    </tbody>
+</table>
+

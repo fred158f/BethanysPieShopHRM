@@ -1,0 +1,16 @@
+﻿@using BethanysPieShopHRM.Shared.Models;
+
+@if (DayEvents != null)
+{
+    <tr>
+        @foreach (DayEvent day in DayEvents.Dates)
+        {
+            <PERSDayCalendar DayEvent="@day" />
+        }
+    </tr>
+}
+
+@code {
+    [Parameter]
+    public WeekClass DayEvents { get; set; }
+}

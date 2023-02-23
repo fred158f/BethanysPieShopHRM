@@ -90,6 +90,21 @@
                     </ul>
                 </li>
                 <li>
+                    <a @onclick="(() => ToggleNav1(6))" data-toggle="collapse" class="dropdown-toggle">Schedule</a>
+                    <ul class="list-unstyled sub-menu @( this.IsHidden6 ? "toggle-hide": "toggle-show")" id="schedule">
+                        <li>
+                            <NavLink href="/Schedule">
+                                Schedule
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink href="/">
+                                Add new shift
+                            </NavLink>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <NavLink href="/staffdirectory">
                         Staff Directory
                     </NavLink>
@@ -106,6 +121,7 @@
     public bool IsHidden3 { get; set; } = true;
     public bool IsHidden4 { get; set; } = true;
     public bool IsHidden5 { get; set; } = true;
+    public bool IsHidden6 { get; set; } = true;
 
     public void ToggleNav1(int navId)
     {
@@ -126,6 +142,10 @@
             case 5:
                 IsHidden5 = !IsHidden5;
                 break;
+            case 6:
+                IsHidden6 = !IsHidden6;
+                break;
+
         }
 
     }
