@@ -1,0 +1,66 @@
+﻿@page "/shiftdetail/{date:datetime}"
+@using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+@using BethanysPieShopHRM.UI.Services;
+@inject ScheduleService scheduleService
+@inject NavigationManager manager
+
+<h3>@CurrentDay.Date.DayOfWeek @CurrentDay.Date.ToString("dd/MM") </h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Employee
+            </th>
+            <th>
+                Shift Start
+            </th>
+            <th>
+                Shift End
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Schedule schedule in CurrentDay.schedules)
+        {
+            <tr>
+                <td>
+                    @schedule.EmployeeId
+                </td>
+                <td>
+                    @schedule.ShiftStart.TimeOfDay.ToString(@"hh\:mm")
+                </td>
+                <td>
+                    @schedule.ShiftEnd.TimeOfDay.ToString(@"hh\:mm")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@code {
+
+    CalendarDay CurrentDay { get; set; }
+
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    protected override Task OnParametersSetAsync()
+    {
+        CurrentDay = new CalendarDay();
+        CurrentDay.schedules = (List<Schedule>)scheduleService.GetByDatetime(Date);
+
+        if (CurrentDay.schedules[0] != null)
+            CurrentDay.Date = CurrentDay.schedules[0].ShiftStart.Date;
+
+
+        return base.OnParametersSetAsync();
+    }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+}

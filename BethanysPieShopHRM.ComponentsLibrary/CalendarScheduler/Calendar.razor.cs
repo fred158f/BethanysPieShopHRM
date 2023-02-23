@@ -42,7 +42,7 @@ namespace BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
             weeks.Clear();
             int weekDayCounter = 0;
             WeekClass week = new WeekClass();
-            List<DayEvent> dates = new List<DayEvent>();
+            List<CalendarDay> dates = new List<CalendarDay>();
             int totalDays = endDate.Day;
             int totalDaysAdded = 0;
 
@@ -54,12 +54,15 @@ namespace BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
 
                 if (weekDayIndex == weekDayCounter)
                 {
-                    dates.Add(new DayEvent()
+                    CalendarDay dayToAdd = new CalendarDay()
                     {
+                        Date = currentDay,
                         DateValue = currentDay.ToString("dd-MMM-yyyy"),
                         DayName = currentDay.ToString("dddd")
-
-                    });
+                    };
+                    dates.Add(dayToAdd);
+                    dayToAdd.GetState();
+                    
                     currentDay = currentDay.AddDays(1);
                     totalDaysAdded++;
                 }
@@ -75,7 +78,7 @@ namespace BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
                     week.Dates = dates;
                     weeks.Add(week);
 
-                    dates = new List<DayEvent>();
+                    dates = new List<CalendarDay>();
                     weekDayCounter = 0;
                 }
                 else
