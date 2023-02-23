@@ -2,8 +2,6 @@
 using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 
 namespace BethanysPieShopHRM.Api.Controllers
 {
@@ -18,9 +16,10 @@ namespace BethanysPieShopHRM.Api.Controllers
         }
 
         [HttpGet("{date}")]
-        public IActionResult GetSchedulesByDate(string date)
+        public IActionResult GetSchedulesByDate(DateTime date)
         {            
             var results = repo.GetSchedulesByDate(date);
+            Console.WriteLine("is");
             return Ok(results);
         }        
         

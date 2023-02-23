@@ -47,19 +47,21 @@ namespace BethanysPieShopHRM.UI.Services
 
             using (var client = new HttpClient())
             {
+                client.BaseAddress = new Uri("https://localhost:44340/");
                 HttpResponseMessage response = await client.PostAsync("api/ScheduleController", content);
 
-                if (!response.IsSuccessStatusCode)                
-                    throw new Exception("Api returns bad");                
+                if (!response.IsSuccessStatusCode)
+                    Console.WriteLine("kk");                
             }            
         }
 
-        public async Task<IEnumerable<Schedule>> GetSchedulesFromDate(DateTime date)
+        public async Task<List<Schedule>> GetSchedulesFromDate(DateTime date)
         {
             string searchBy = date.ToShortDateString();    
             
             using (HttpClient client = new HttpClient())
             {
+                client.BaseAddress = new Uri("https://localhost:44340/");
                 var response = await client.GetAsync($"api/ScheduleController/{searchBy}");
                 var content = await response.Content.ReadAsStringAsync();
                 var events = System.Text.Json.JsonSerializer.Deserialize<List<Schedule>>(content);

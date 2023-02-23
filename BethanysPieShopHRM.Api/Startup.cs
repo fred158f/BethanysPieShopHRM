@@ -62,7 +62,7 @@ namespace BethanysPieShopHRM.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

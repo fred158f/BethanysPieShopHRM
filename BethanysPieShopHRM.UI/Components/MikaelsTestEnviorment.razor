@@ -33,22 +33,21 @@
     private string timeStamp = string.Empty;
     List<Schedule> schedules = new List<Schedule>();
 
-    protected override void OnInitialized()
-    {        
-        schedules = scheduleService.GetByDatetime(new DateTime(2019,02,023));
+    protected async override void OnInitialized()
+    {       
+        schedules = await scheduleService.GetSchedulesFromDate(new DateTime(2019, 02, 023));        
     }
 
 
     private void CreateNewSchedule()
     {
-        int userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
-        if (userId != null)
-        {
-            createdSchedule.EmployeeId = userId;
+        //int? userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
+
+        createdSchedule.EmployeeId = 1;
             createdSchedule.ShiftStart = new DateTime(2023, 02, 24);
             createdSchedule.ShiftEnd = new DateTime(2023, 02, 25);
             scheduleService.CreateSchedule(createdSchedule);
-        }        
+            
         
     }
 }
