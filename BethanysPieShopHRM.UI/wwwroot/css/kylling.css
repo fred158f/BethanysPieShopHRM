@@ -10,7 +10,7 @@
     --test: #00bbff;
 }
 
-.font-heading{
+.font-heading {
     color: var(--font-grey);
 }
 
@@ -47,10 +47,21 @@ nav {
     background: rgb(41, 45, 48);
 }
 
+.widget {
+    border-radius: 10px;
+}
+
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: var(--light-grey);
 }
 
+table.rounded-corners {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 1px solid black;
+    border-color: var(--font-grey);
+}
 
 .list-group-item.active, .list-group-item.active:active, .list-group-item.active:focus, .list-group-item.active:visited {
     color: white;
