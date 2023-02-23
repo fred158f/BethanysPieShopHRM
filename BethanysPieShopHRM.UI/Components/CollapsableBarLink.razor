@@ -1,0 +1,10 @@
+﻿<li>
+    <NavLink href="@Url">@Name</NavLink>
+</li>
+
+@code {
+    [Parameter]
+    public string Url { get; set; }
+    [Parameter]
+    public string Name { get; set; }
+}
