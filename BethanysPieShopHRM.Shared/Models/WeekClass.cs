@@ -6,6 +6,6 @@ namespace BethanysPieShopHRM.Shared.Models
 {
     public class WeekClass
     {
-        public List<DayEvent> Dates { get; set; } = new List<DayEvent>();
+        public List<CalendarDay> Dates { get; set; } = new List<CalendarDay>();
     }
 }

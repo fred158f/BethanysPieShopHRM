@@ -1,12 +1,11 @@
 ﻿@using BethanysPieShopHRM.Shared.Models;
 @using Microsoft.AspNetCore.Components.Web
+@inject NavigationManager navigator
 
 @if (DayEvent != null)
 {
     <td @onclick="HasClickt" style="background-color:@colour">
-        <button @onclick="HasClickt" style="background-color:@colour">
-            @DayEvent.DateValue
-        </button>
+        <label>@DayEvent.DateValue</label>
         <br /><br />
         <label>NotReal</label>
         <br /><br />
@@ -24,23 +23,45 @@ else
 
 @code {
     [Parameter]
-    public DayEvent DayEvent { get; set; }
+    public CalendarDay DayEvent { get; set; }
     public string colour { get; set; }
 
     protected override void OnInitialized()
     {
-        colour = "purple";
+        UpdateColor();
         base.OnInitialized();
     }
 
     protected override void OnParametersSet()
-    {
-        colour = "purple"; 
+    {        
+        UpdateColor();
         base.OnParametersSet();
+    }
+
+    public void UpdateColor()
+    {
+        if (DayEvent != null)
+        {
+            switch (DayEvent.State)
+            {
+                case CalendarDay.DayState.None:
+                    colour = "red";
+                    break;
+                case CalendarDay.DayState.Partial:
+                    colour = "yellow";
+                    break;
+                case CalendarDay.DayState.Full:
+                    colour = "green";
+                    break;
+                default:
+                    throw new Exception("Stupid");
+            }
+        }
     }
 
     public void HasClickt()
     {
-        colour = (colour == "purple" ? "orange" : "purple");
+        string dateToSend = DayEvent.Date.ToString("yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+        navigator.NavigateTo($"/ShiftDetail/{dateToSend}");
     }
 }
