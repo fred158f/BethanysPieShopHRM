@@ -10,6 +10,12 @@
     --test: #00bbff;
 }
 
+.page-title {
+    color: var(--red);
+    font-size: 28px;
+    font-weight: bold;
+}
+
 .font-heading {
     color: var(--font-grey);
 }
@@ -102,3 +108,7 @@ table.rounded-corners {
         background-color: var(--test);
         border-color: var(--test);
     }
+
+.rounded-corner {
+    border-radius: 10px;
+}
