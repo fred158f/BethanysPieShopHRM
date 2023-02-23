@@ -1,4 +1,5 @@
 using BethanysPieShopHRM.Api.Models;
+using BethanysPieShopHRM.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -37,6 +38,8 @@ namespace BethanysPieShopHRM.Api
             services.AddScoped<ICurrencyRepository, CurrencyRepository>();
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddScoped<ISurveyRepository, SurveyRepository>();
+            services.AddScoped<TradeSchdulesRepository>();
+            services.AddScoped<ScheduleRepository>();
 
             services.AddCors(options =>
             {
@@ -48,7 +51,9 @@ namespace BethanysPieShopHRM.Api
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver();
                     options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
                 });
+            
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -1,0 +1,35 @@
+﻿@using BethanysPieShopHRM.Shared;
+@using BethanysPieShopHRM.UI.LoginSingleton;
+
+@if (CurrentUser != null && CurrentUser.EmployeeId == UserId)
+{
+    <button class="btn btn-outline-secondary" @onclick="@LogoutUser">Logout</button>
+}
+else
+{
+    <button class="btn btn-secondary" @onclick="@LoginUser">Login</button>
+}
+
+
+@code {
+    [CascadingParameter(Name = "User")]
+    public Employee CurrentUser { get; set; }
+
+    [Parameter]
+    public int UserId { get; set; }
+
+    [Parameter]
+    public EventCallback<int> OnLogin { get; set; }
+
+    public async Task LoginUser()
+    {
+        await UserSigninManager.Instance.Login(UserId);
+        await OnLogin.InvokeAsync(UserId);
+
+    }
+
+    public void LogoutUser()
+    {
+        UserSigninManager.Instance.Logout();
+    }
+}
