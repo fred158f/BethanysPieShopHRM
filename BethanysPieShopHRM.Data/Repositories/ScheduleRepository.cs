@@ -3,6 +3,7 @@ using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,12 +22,15 @@ namespace BethanysPieShopHRM.Data.Repositories
         public async Task<Schedule> GetWhere(int id)
         {
             return await _appDbContext.Schedules.FirstOrDefaultAsync(x => x.Id == id);
-        } 
+        }
 
         public async Task<List<Schedule>> GetSchedulesByDate(DateTime dato)
         {
-            return await _appDbContext.Schedules.Where(x => x.ShiftStart.ToShortDateString() == dato.ToShortDateString()).ToListAsync();
+            var result = await _appDbContext.Schedules.Where(x => x.ShiftDate == dato).ToListAsync();
+
+            return result;
         }
+
         public async Task<List<Schedule>> GetScheduleByEmployeeId(int id)
         {
             return await _appDbContext.Schedules.Where(x => x.EmployeeId == id).ToListAsync();
@@ -35,7 +39,7 @@ namespace BethanysPieShopHRM.Data.Repositories
         public async Task<Schedule> CreateSchedule(Schedule schedule)
         {
             await _appDbContext.Schedules.AddAsync(schedule);
-            _appDbContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
             return schedule;
         }
         public async Task<Schedule> UpdateSchedule(Schedule scheduleChanges)

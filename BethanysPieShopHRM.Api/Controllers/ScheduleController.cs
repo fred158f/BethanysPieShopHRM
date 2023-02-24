@@ -3,7 +3,7 @@ using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
+using System.Threading.Tasks;
 
 namespace BethanysPieShopHRM.Api.Controllers
 {
@@ -14,16 +14,23 @@ namespace BethanysPieShopHRM.Api.Controllers
         private ScheduleRepository repo;
         public ScheduleController(ScheduleRepository repository)
         {
-            repo= repository;
+            repo = repository;
         }
 
-        [HttpGet]
-        public IActionResult GetSchedulesByDate(DateTime date)
-        {            
-            var results = repo.GetSchedulesByDate(date);
-            return Ok(results);
-        }        
-        
+        [HttpGet("{date}")]
+        public async Task<IActionResult> GetSchedulesByDate(string date)
+        {
+
+            DateTime dateTime = DateTime.Parse(date); 
+            List<Schedule> results = await repo.GetSchedulesByDate(dateTime);
+            List<Schedule> test = new List<Schedule>()
+
+            {
+                new Schedule() {Id = 1, ShiftDate = new DateTime(2023,01,02), ShiftStart = DateTime.Now.TimeOfDay, ShiftEnd = DateTime.Now.AddHours(5).TimeOfDay }
+            };
+            return Ok(results ?? test);
+        }
+
         [HttpGet]
         public IActionResult GetSchedulesByEmployee(int id)
         {            
@@ -32,10 +39,9 @@ namespace BethanysPieShopHRM.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateSchedule(DateTime start, DateTime end, int id)
+        public async Task<IActionResult> CreateSchedule(Schedule schedule)
         {
-            var schedule = new Schedule() { EmployeeId = id,ShiftStart = start, ShiftEnd = end, };
-            repo.CreateSchedule(schedule);  
+            await repo.CreateSchedule(schedule);  
             return Ok(schedule);
         }
 

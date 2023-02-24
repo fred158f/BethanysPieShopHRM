@@ -44,7 +44,7 @@ namespace BethanysPieShopHRM.UI
             services.AddTransient<ICurrencyDataService, CurrencyDataService>();
             services.AddTransient<IJobDataService, JobsDataService>();
             services.AddTransient<ScheduleService>();
-            services.AddSingleton<ContainsUserID>();
+            
 
             // Helper services
             services.AddTransient<IEmailService, EmailService>();

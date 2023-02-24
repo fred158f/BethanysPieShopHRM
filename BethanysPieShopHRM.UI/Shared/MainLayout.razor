@@ -2,7 +2,6 @@
 @using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 @using BethanysPieShopHRM.UI.LoginSingleton;
 @inherits LayoutComponentBase
-@inject ContainsUserID useriD
 
 
     <div class="d-flex" id="wrapper">
@@ -40,8 +39,7 @@
     protected override Task OnInitializedAsync()
     {
         UserSigninManager.Instance.UserChange += () => { CurrentUser = UserSigninManager.Instance.CurrentUser; StateHasChanged(); };
-        if (UserSigninManager.Instance.CurrentUser != null)        
-            useriD.Id = UserSigninManager.Instance.CurrentUser.EmployeeId;           
+          
         return base.OnInitializedAsync();
     }
 }
