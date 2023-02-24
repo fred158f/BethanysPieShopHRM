@@ -1,5 +1,5 @@
-﻿<a @onclick="(() => ToggleNav())" data-toggle="collapse" class="dropdown-toggle">@Name</a>
-<ul class="list-unstyled sub-menu @( this.IsHidden ? "toggle-hide": "toggle-show")" id="schedule">
+﻿<a @onclick="(() => ToggleNav())" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">@Name</span></a>
+<ul class="list-unstyled sub-menu @( this.IsHidden ? "toggle-hide": "toggle-show") dropdown_menu-7" id="schedule">
     @ChildContent
 </ul>
 
