@@ -11,41 +11,43 @@
     <div class="card-body">
         <h5 class="card-title">Opret Schedule</h5>
         <EditForm Model="@createdSchedule">
-
         <div class="form-group">
-            <label for="start">Vælg Start Tid</label>
-            <InputDate id="start" class="form-control" @bind-Value="createdSchedule.ShiftStart"/>
-        </div>
-        <div class="form-group">
-            <label for="slut">Vælg Slut Tid</label>
-            <InputDate id="slut" class="form-control" @bind-Value="createdSchedule.ShiftEnd"/>
-        </div>
-                <div class="form-group">
             <label for="timestamp">Vælg Start Tid</label>
             <InputText id="timestamp" class="form-control" @bind-Value="timeStamp"/>
         </div>
-
             <a href="#" class="btn btn-primary" @onclick="CreateNewSchedule">OPRET</a>
         </EditForm>
     </div>
 </div>
+<div class="card-body">
+    <h1>@schedules.Count were found</h1>
+    <button class="btn btn-primary" @onclick="@CreateNewSchedule"></button>
+
+</div>
+
 
 
 
 @code{
     private Schedule createdSchedule { get; set; } = new Schedule();
     private string timeStamp = string.Empty;
+    List<Schedule> schedules = new List<Schedule>();
+
+    protected async override void OnInitialized()
+    {       
+        schedules = await scheduleService.GetSchedulesFromDate(new DateTime(2023, 01, 01));        
+    }
 
 
     private void CreateNewSchedule()
     {
+        Schedule test = new Schedule() {
+                EmployeeId = 1,
+                ShiftDate = new DateTime(2023, 01, 03),
+                ShiftStart = DateTime.Now.TimeOfDay,
+                ShiftEnd = DateTime.Now.AddHours(2).TimeOfDay,
+    };
+        scheduleService.CreateSchedule(test);
 
-        int userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
-        if (userId != null)
-        {
-            createdSchedule.EmployeeId = userId;
-            scheduleService.CreateSchedule(createdSchedule);
-        }        
-        
     }
 }

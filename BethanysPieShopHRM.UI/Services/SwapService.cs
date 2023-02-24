@@ -1,16 +1,16 @@
 ﻿namespace BethanysPieShopHRM.UI.Services
 {
-    public class TradeService
+    public class SwapService
     {
         private int currentUserId;
 
-        public TradeService(int id)
+        public SwapService(int id)
         {
             currentUserId= id;
         }
 
 
-        public void CreateSchedule(int id)
+        public void CreateSwap(int id)
         {
 
         }
