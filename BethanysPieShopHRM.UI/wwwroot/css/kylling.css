@@ -109,9 +109,26 @@ table.rounded-corners {
         border-color: var(--test);
     }
 
+.table {
+    background-color: white;
+}
+
+.table-btn {
+    background-color: var(--bluegreen);
+    border-color: var(--bluegreen);
+}
+
+    .table-btn:hover, .table-btn:active {
+        color: #fff;
+        background-color: var(--red);
+        border-color: var(--red);
+    }
+
 .rounded-corner {
     border-radius: 10px;
 }
+
+
 
 /*
     Dropdown menu anims
@@ -135,3 +152,44 @@ table.rounded-corners {
         transform: rotateX(0deg);
     }
 }
+
+#sidebar {
+    color: #fff;
+    transition: all 0.3s;
+}
+
+    #sidebar.active {
+        margin-left: -250px;
+    }
+
+    #sidebar .sidebar-header {
+        padding: 20px;
+        background: #6d7fcc;
+    }
+
+    #sidebar ul.components {
+        padding: 20px 0;
+    }
+
+    #sidebar ul p {
+        color: #fff;
+        padding: 10px;
+    }
+
+    #sidebar ul li a {
+        padding: 10px;
+        font-size: 1.1em;
+        display: block;
+        color: none;
+    }
+
+        #sidebar ul li a:hover {
+            color: var(--red);
+            text-decoration: none;
+            background: none;
+        }
+
+    #sidebar ul li.active > a,
+    a[aria-expanded="true"] {
+        color: #fff;
+    }
