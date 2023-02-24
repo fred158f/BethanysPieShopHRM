@@ -10,99 +10,43 @@
         <nav id="sidebar">
             <ul class="list-unstyled components">
                 <li>
-                    <NavLink href="/">
-                        <span class="font-heading">Home</span>
-                    </NavLink>
+                    <NavLink href="/">Home</NavLink>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(1))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Tasks</span></a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden1 ? "toggle-hide": "toggle-show")" id="tasks">
-                        <li>
-                            <NavLink href="/tasks">
-                                View tasks
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/taskedit">
-                                Add new task
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Tasks">
+                        <CollapsableBarLink Name="View Tasks" Url="/tasks"/>
+                        <CollapsableBarLink Name="Add new task" Url="/taskedit" />
+                    </CollapsableBar>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(2))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Employee</span></a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden2 ? "toggle-hide": "toggle-show")" id="employees">
-                        <li>
-                            <NavLink href="/employeeoverview">
-                                View Employees
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/employeeedit">
-                                Add new employee
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Employees">
+                        <CollapsableBarLink Name="View Employees" Url="/employeeoverview" />
+                        <CollapsableBarLink Name="Add new employee" Url="/employeeedit" />
+                    </CollapsableBar>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(3))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Opportunities</span></a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden3 ? "toggle-hide": "toggle-show")" id="jobs">
-                        <li>
-                            <NavLink href="/jobs">
-                                Jobs
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/jobedit">
-                                New job
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Opportunities">
+                        <CollapsableBarLink Name="Jobs" Url="/jobs" />
+                        <CollapsableBarLink Name="New job" Url="/jobedit" />
+                    </CollapsableBar>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(4))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Expenses</span></a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden4 ? "toggle-hide": "toggle-show")" id="training">
-                        <li>
-                            <NavLink href="/expenses">
-                                Expenses
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/expenseedit">
-                                New Expense
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Expenses">
+                        <CollapsableBarLink Name="Expenses" Url="/expenses" />
+                        <CollapsableBarLink Name="New Expense" Url="/expenseedit" />
+                    </CollapsableBar>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(5))" data-toggle="collapse" class="dropdown-toggle"><span class="font-heading">Feedback</span></a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden5 ? "toggle-hide": "toggle-show")" id="feedback">
-                        <li>
-                            <NavLink href="/surveys">
-                                Surveys
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/surveyedit">
-                                New Survey
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Feedback">
+                        <CollapsableBarLink Name="Surveys" Url="/surveys" />
+                        <CollapsableBarLink Name="New Survey" Url="/surveyedit" />
+                    </CollapsableBar>
                 </li>
                 <li>
-                    <a @onclick="(() => ToggleNav1(6))" data-toggle="collapse" class="dropdown-toggle">Schedule</a>
-                    <ul class="list-unstyled sub-menu @( this.IsHidden6 ? "toggle-hide": "toggle-show")" id="schedule">
-                        <li>
-                            <NavLink href="/Schedule">
-                                Schedule
-                            </NavLink>
-                        </li>
-                        <li>
-                            <NavLink href="/">
-                                Add new shift
-                            </NavLink>
-                        </li>
-                    </ul>
+                    <CollapsableBar Name="Schedule">
+                        <CollapsableBarLink Name="Schedule" Url="/Schedule" />
+                        <CollapsableBarLink Name="Add new shift" Url="/" />
+                    </CollapsableBar>
                 </li>
                 <li>
                     <NavLink href="/staffdirectory">
@@ -114,39 +58,5 @@
     </div>
 </div>
 
-@code {
-
-    public bool IsHidden1 { get; set; } = true;
-    public bool IsHidden2 { get; set; } = true;
-    public bool IsHidden3 { get; set; } = true;
-    public bool IsHidden4 { get; set; } = true;
-    public bool IsHidden5 { get; set; } = true;
-    public bool IsHidden6 { get; set; } = true;
-
-    public void ToggleNav1(int navId)
-    {
-        switch (navId)
-        {
-            case 1:
-                IsHidden1 = !IsHidden1;
-                break;
-            case 2:
-                IsHidden2 = !IsHidden2;
-                break;
-            case 3:
-                IsHidden3 = !IsHidden3;
-                break;
-            case 4:
-                IsHidden4 = !IsHidden4;
-                break;
-            case 5:
-                IsHidden5 = !IsHidden5;
-                break;
-            case 6:
-                IsHidden6 = !IsHidden6;
-                break;
-
-        }
-
-    }
+@code{
 }
