@@ -9,6 +9,7 @@ using BethanysPieShopHRM.UI.Data;
 using Blazor.FlexGrid;
 using BethanysPieShopHRM.UI.Pages;
 using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+using Blazored.Modal;
 
 namespace BethanysPieShopHRM.UI
 {
@@ -44,6 +45,7 @@ namespace BethanysPieShopHRM.UI
             services.AddTransient<ICurrencyDataService, CurrencyDataService>();
             services.AddTransient<IJobDataService, JobsDataService>();
             services.AddTransient<ScheduleService>();
+            services.AddBlazoredModal();
             
 
             // Helper services
