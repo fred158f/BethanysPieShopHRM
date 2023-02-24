@@ -1,0 +1,114 @@
+﻿:root {
+    --red: #893e3c;
+    --light-grey: #f4f4f4;
+    --dark-grey: #282828;
+    --dark-bluegrey: #292d30;
+    --font-grey: #adadad;
+    --white: #ffffff;
+    --bluegreen: #346667;
+    --yellow: #fdfdca;
+    --test: #00bbff;
+}
+
+.page-title {
+    color: var(--red);
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.font-heading {
+    color: var(--font-grey);
+}
+
+.font-title {
+    color: var(--red);
+}
+
+body {
+    background-color: var(--light-grey);
+    background-image: none;
+    background-repeat: repeat;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    background-color: var(--dark-bluegrey);
+    border-color: var(--dark-bluegrey);
+}
+
+.sidebar-logo {
+    height: 100px;
+    background-color: var(--dark-bluegrey);
+    border-color: var(--dark-bluegrey);
+    width: 240px;
+}
+
+.center-image {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#sidebar-wrapper {
+    background: rgb(41, 45, 48);
+}
+
+.widget {
+    border-radius: 10px;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--light-grey);
+}
+
+table.rounded-corners {
+    border-spacing: 0;
+    border-collapse: separate;
+    border-radius: 10px;
+    border: 1px solid black;
+    border-color: var(--font-grey);
+}
+
+.list-group-item.active, .list-group-item.active:active, .list-group-item.active:focus, .list-group-item.active:visited {
+    color: white;
+    background-color: var(--dark-bluegrey);
+    border-color: var(--dark-bluegrey);
+    font-weight: bold;
+}
+
+.table-btn {
+    background-color: var(--bluegreen);
+    border-color: var(--bluegreen);
+}
+
+    .table-btn:hover, .table-btn:active {
+        color: #fff;
+        background-color: var(--bluegreen);
+        border-color: var(--bluegreen);
+    }
+
+.edit-btn {
+    background-color: var(--bluegreen);
+    border-color: var(--bluegreen);
+    color: #fff;
+}
+
+    .edit-btn:hover, .edit-btn:active {
+        color: #fff;
+        background-color: var(--dark-bluegrey);
+        border-color: var(--bluegreen);
+    }
+
+.edit-outline-btn {
+    border-color: var(--test);
+}
+
+    .edit-outline-btn:hover, .edit-outline-btn:active {
+        color: #fff;
+        background-color: var(--test);
+        border-color: var(--test);
+    }
+
+.rounded-corner {
+    border-radius: 10px;
+}

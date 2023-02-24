@@ -5,13 +5,6 @@
 
 <div class="row">
     <div class="col-md-8">
-        <h1 class="page-title">Welcome to Bethany's Pie Shop HRM!</h1>
-    </div>
-</div>
-<br />
-
-<div class="row">
-    <div class="col-md-8">
         <NewsWidget />
 
         <TaskList Count="3" />
@@ -30,13 +23,13 @@
                     <DataAnnotationsValidator />
                     <div class="form-group">
                         <label for="title">Title: </label>
-                        <InputText id="title" class="form-control" @bind-Value="@NewConcern.Title" placeholder="Enter title"></InputText>
+                        <InputText id="title" class="form-control rounded-corner" @bind-Value="@NewConcern.Title" placeholder="Enter title"></InputText>
                         <ValidationMessage For="@(() => NewConcern.Title)" />
                     </div>
 
                     <div class="form-group">
                         <label for="title">Description: </label>
-                        <InputTextArea id="title" class="form-control" @bind-Value="@NewConcern.Description" placeholder="Enter title"></InputTextArea>
+                        <InputTextArea id="title" class="form-control rounded-corner" @bind-Value="@NewConcern.Description" placeholder="Enter title"></InputTextArea>
                         <ValidationMessage For="@(() => NewConcern.Description)" />
                     </div>
 
