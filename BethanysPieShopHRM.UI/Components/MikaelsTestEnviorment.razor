@@ -35,19 +35,19 @@
 
     protected async override void OnInitialized()
     {       
-        schedules = await scheduleService.GetSchedulesFromDate(new DateTime(2019, 02, 023));        
+        schedules = await scheduleService.GetSchedulesFromDate(new DateTime(2023, 01, 01));        
     }
 
 
     private void CreateNewSchedule()
     {
-        //int? userId = UserSigninManager.Instance.CurrentUser.EmployeeId;
+        Schedule test = new Schedule() {
+                EmployeeId = 1,
+                ShiftDate = new DateTime(2023, 01, 03),
+                ShiftStart = DateTime.Now.TimeOfDay,
+                ShiftEnd = DateTime.Now.AddHours(2).TimeOfDay,
+    };
+        scheduleService.CreateSchedule(test);
 
-        createdSchedule.EmployeeId = 1;
-            createdSchedule.ShiftStart = new DateTime(2023, 02, 24);
-            createdSchedule.ShiftEnd = new DateTime(2023, 02, 25);
-            scheduleService.CreateSchedule(createdSchedule);
-            
-        
     }
 }

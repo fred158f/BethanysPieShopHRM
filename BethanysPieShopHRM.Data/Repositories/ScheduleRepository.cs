@@ -22,17 +22,15 @@ namespace BethanysPieShopHRM.Data.Repositories
         public async Task<Schedule> GetWhere(int id)
         {
             return await _appDbContext.Schedules.FirstOrDefaultAsync(x => x.Id == id);
-        } 
+        }
 
         public async Task<List<Schedule>> GetSchedulesByDate(DateTime dato)
-        {                   
-            
-
-           
-            var result = await _appDbContext.Schedules.Where(x => x.ShiftStart > dato.ToListAsync();
+        {
+            var result = await _appDbContext.Schedules.Where(x => x.ShiftDate == dato).ToListAsync();
 
             return result;
         }
+
         public async Task<List<Schedule>> GetScheduleByEmployeeId(int id)
         {
             return await _appDbContext.Schedules.Where(x => x.EmployeeId == id).ToListAsync();
@@ -41,7 +39,7 @@ namespace BethanysPieShopHRM.Data.Repositories
         public async Task<Schedule> CreateSchedule(Schedule schedule)
         {
             await _appDbContext.Schedules.AddAsync(schedule);
-            _appDbContext.SaveChangesAsync();
+            await _appDbContext.SaveChangesAsync();
             return schedule;
         }
         public async Task<Schedule> UpdateSchedule(Schedule scheduleChanges)

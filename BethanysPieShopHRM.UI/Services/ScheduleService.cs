@@ -12,32 +12,8 @@ namespace BethanysPieShopHRM.UI.Services
     {
         public List<Schedule> GetByDatetime(DateTime date)
         {
-            List<Schedule> list = new List<Schedule>()
-            {
-                new Schedule()
-                {
-                    EmployeeId = 1,
-                    Id = 0,
-                    ShiftStart = date.AddHours(11),
-                    ShiftEnd = date.AddHours(16)
-                },
-                new Schedule()
-                {
-                    EmployeeId = 2,
-                    Id = 1,
-                    ShiftStart = date.AddHours(11),
-                    ShiftEnd = date.AddHours(16)
-                },
-                new Schedule()
-                {
-                    EmployeeId = 3,
-                    Id = 2,
-                    ShiftStart = date.AddHours(11),
-                    ShiftEnd = date.AddHours(16)
-                }
-            };
-
-            return list;
+           var result = new List<Schedule>();
+            return result;
         }
 
         public async void CreateSchedule(Schedule schedule)
@@ -48,23 +24,19 @@ namespace BethanysPieShopHRM.UI.Services
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
-                HttpResponseMessage response = await client.PostAsync("api/ScheduleController", content);
-
-                if (!response.IsSuccessStatusCode)
-                    Console.WriteLine("kk");                
+                HttpResponseMessage response = await client.PostAsync("api/Schedule", content);
+              
             }            
         }
 
         public async Task<List<Schedule>> GetSchedulesFromDate(DateTime date)
-        {
-            string searchBy = date.ToShortDateString();    
-            
+        {            
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
-                var response = await client.GetAsync($"api/ScheduleController/{searchBy}");
+                var response = await client.GetAsync($"api/Schedule/{date.ToShortDateString()}");
                 var content = await response.Content.ReadAsStringAsync();
-                var events = System.Text.Json.JsonSerializer.Deserialize<List<Schedule>>(content);
+                var events = JsonConvert.DeserializeObject<List<Schedule>>(content);
                 return events;
             }
         }
