@@ -1,4 +1,5 @@
-﻿using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+﻿using BethanysPieShopHRM.Shared;
+using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -21,12 +22,12 @@ namespace BethanysPieShopHRM.UI.Services
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
                 HttpResponseMessage response = await client.PostAsync("api/Schedule", content);
-              
-            }            
+
+            }
         }
 
         public async Task<List<Schedule>> GetSchedulesFromDate(DateTime date)
-        {            
+        {
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
@@ -37,5 +38,14 @@ namespace BethanysPieShopHRM.UI.Services
             }
         }
 
+
+        public async Task UpdateSchedule(Schedule schedule)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44340/");
+            var employeeJson = new StringContent(System.Text.Json.JsonSerializer.Serialize(schedule), Encoding.UTF8, "application/json");
+
+             await client.PutAsync("api/Schedule", employeeJson);
+        }    
     }
 }

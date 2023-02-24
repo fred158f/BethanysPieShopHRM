@@ -23,12 +23,10 @@ namespace BethanysPieShopHRM.Api.Controllers
 
             DateTime dateTime = DateTime.Parse(date); 
             List<Schedule> results = await repo.GetSchedulesByDate(dateTime);
-            List<Schedule> test = new List<Schedule>()
+            
 
-            {
-                new Schedule() {Id = 1, ShiftDate = new DateTime(2023,01,02), ShiftStart = DateTime.Now.TimeOfDay, ShiftEnd = DateTime.Now.AddHours(5).TimeOfDay }
-            };
-            return Ok(results ?? test);
+            
+            return Ok(results );
         }
 
         [HttpGet]
@@ -46,12 +44,11 @@ namespace BethanysPieShopHRM.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateSchedule(Schedule schedule)
+        public async Task<IActionResult> UpdateSchedule(Schedule schedule)
         {
-            repo.UpdateSchedule(schedule);
+            await repo.UpdateSchedule(schedule);
             return Ok(schedule);
         }
-
 
         [HttpDelete]
         public IActionResult DeleteSchedule(int id) 

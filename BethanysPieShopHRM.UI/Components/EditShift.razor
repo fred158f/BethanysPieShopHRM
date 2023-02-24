@@ -1,0 +1,43 @@
+﻿@using BethanysPieShopHRM.Shared;
+@using BethanysPieShopHRM.Shared.TeamWolfiesClasses;
+@using BethanysPieShopHRM.UI.Services;
+@inject IEmployeeDataService employeeService
+@inject ScheduleService scheduleService
+@if (Employees.Count() > 0)
+{
+    <label>@Employees.FirstOrDefault(x => x.EmployeeId == Schedule.EmployeeId).FirstName</label>
+    
+<EditForm Model="Schedule" OnSubmit="UpdateSchedule">    
+        <InputSelect @bind-Value="EmployeeId">
+            <option hidden selected disabled>Vælg</option>
+        @foreach (Employee employee in Employees)
+        {
+                <option value="@employee.EmployeeId.ToString()">@employee.FirstName @employee.LastName</option>
+        }
+    </InputSelect>
+        <button class="btn btn-primary align-right"type="submit">GEM</button>
+</EditForm>
+}
+
+@code{
+    private IEnumerable<Employee> Employees { get; set; } = new List<Employee>();
+    [Parameter]
+    public Schedule Schedule { get; set; }
+    private string EmployeeId { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        Employees = await employeeService.GetAllEmployees();
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task UpdateSchedule()
+    {
+        this.Schedule.EmployeeId = Convert.ToInt32(EmployeeId);
+        await scheduleService.UpdateSchedule(Schedule);
+        
+    }
+
+}

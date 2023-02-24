@@ -48,8 +48,7 @@ namespace BethanysPieShopHRM.UI.Services
 
         public async Task UpdateEmployee(Employee employee)
         {
-            var employeeJson =
-                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
+            var employeeJson =                new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
            
             await _httpClient.PutAsync("api/employee", employeeJson);
         }

@@ -1,4 +1,5 @@
 ﻿@using BethanysPieShopHRM.Shared.Models;
+@using BethanysPieShopHRM.ComponentsLibrary;
 @using Microsoft.AspNetCore.Components.Web
 @inject NavigationManager navigator
 
@@ -41,20 +42,13 @@ else
     public void UpdateColor()
     {
         if (DayEvent != null)
-        {
-            switch (DayEvent.State)
+        {            
+            if (DayEvent.Schedules.Count() > 0)
             {
-                case CalendarDay.DayState.None:
-                    colour = "#893e3c";
-                    break;
-                case CalendarDay.DayState.Partial:
-                    colour = "#fdfdca";
-                    break;
-                case CalendarDay.DayState.Full:
-                    colour = "#346667";
-                    break;
-                default:
-                    throw new Exception("Stupid");
+                colour = "#346667";
+            }else
+            {
+                colour = "#893e3c";
             }
         }
     }

@@ -19,6 +19,7 @@
             <th>
                 Shift End
             </th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -35,6 +36,11 @@
                     </td>
                     <td>
                         @schedule.ShiftEnd.ToString(@"hh\:mm")
+                    </td>
+                    <td>
+                        <EditScheduleModal Title="EditShift">
+                            <EditShift Schedule="schedule"></EditShift>
+                        </EditScheduleModal>
                     </td>
                 </tr>
             }

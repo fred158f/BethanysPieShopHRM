@@ -3,7 +3,6 @@
 @using BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
 
 <select @onchange="LoadCalendar">
-    <option selected hidden disabled> - Cheese - </option>
     @foreach (string monthName in monthNames)
     {
         <option>@monthName</option>
