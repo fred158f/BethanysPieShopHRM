@@ -18,7 +18,7 @@ namespace BethanysPieShopHRM.Shared.Models
         public DateTime Date { get; set; }
         public string DateValue { get; set; }
         public string DayName { get; set; }
-        public List<Schedule> schedules { get; set; } = new List<Schedule>();
+        public List<Schedule> Schedules { get; set; } = new List<Schedule>();
 
         public void GetState()
         {

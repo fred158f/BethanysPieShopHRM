@@ -22,19 +22,22 @@
         </tr>
     </thead>
     <tbody>
-        @foreach(Schedule schedule in CurrentDay.schedules)
+        @if (CurrentDay.Schedules.Count > 0)
         {
-            <tr>
-                <td>
-                    @schedule.EmployeeId
-                </td>
-                <td>
-                    @schedule.ShiftStart.ToString(@"hh\:mm")
-                </td>
-                <td>
-                    @schedule.ShiftEnd.ToString(@"hh\:mm")
-                </td>
-            </tr>
+            @foreach (Schedule schedule in CurrentDay.Schedules)
+            {
+                <tr>
+                    <td>
+                        @schedule.EmployeeId
+                    </td>
+                    <td>
+                        @schedule.ShiftStart.ToString(@"hh\:mm")
+                    </td>
+                    <td>
+                        @schedule.ShiftEnd.ToString(@"hh\:mm")
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
@@ -42,23 +45,16 @@
 
 
 @code {
-
-    CalendarDay CurrentDay { get; set; }
+    CalendarDay CurrentDay { get; set; } = new CalendarDay();
 
     [Parameter]
     public DateTime Date { get; set; }
 
-    //protected override Task OnParametersSetAsync()
-    //{
-    //    CurrentDay = new CalendarDay();
-    //    CurrentDay.schedules = (List<Schedule>)scheduleService.GetByDatetime(Date);
-
-    //    if (CurrentDay.schedules[0] != null)
-    //        //CurrentDay.Date = CurrentDay.schedules[0].ShiftStart.Date;
-
-
-    //    return base.OnParametersSetAsync();
-    //}
+    protected async override Task OnParametersSetAsync()
+    {
+        CurrentDay.Schedules = await scheduleService.GetSchedulesFromDate(Date);
+        await base.OnParametersSetAsync();
+    }
 
     protected override void OnInitialized()
     {

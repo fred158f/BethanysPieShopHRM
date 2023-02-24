@@ -10,11 +10,7 @@ namespace BethanysPieShopHRM.UI.Services
 {
     public class ScheduleService
     {
-        public List<Schedule> GetByDatetime(DateTime date)
-        {
-           var result = new List<Schedule>();
-            return result;
-        }
+
 
         public async void CreateSchedule(Schedule schedule)
         {

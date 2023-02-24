@@ -25,7 +25,7 @@ namespace BethanysPieShopHRM.ComponentsLibrary.CalendarScheduler
 
         private void LoadCalendar(ChangeEventArgs e)
         {
-            int monthIndex = DateTime.ParseExact(e.Value.ToString(), "MMMM", System.Globalization.CultureInfo.CreateSpecificCulture("en-GB")).Month;
+            int monthIndex = DateTime.ParseExact(e.Value.ToString(), "MMMM", System.Globalization.CultureInfo.CurrentCulture).Month;
             startDate = new DateTime(DateTime.Now.Year, monthIndex, 1);
             endDate = (new DateTime(DateTime.Now.Year, monthIndex, 1)).AddMonths(1).AddDays(-1);
             GeneratorCalendarBody();
